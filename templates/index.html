@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Search App</title>
+</head>
+<body>
+    <h1>Google Search</h1>
+
+    <!-- Forma vyhledávání -->
+    <form method="POST" action="/">
+        <input type="text" name="query" placeholder="Zadejte klíčové slovní spojení" value="{{ query }}" required>
+        <button type="submit">Hledat</button>
+    </form>
+
+    <!-- Výsledky -->
+    {% if results %}
+        <h2>Výsledky:</h2>
+        <ul>
+        {% for r in results %}
+            <li><a href="{{ r.link }}" target="_blank">{{ r.title }}</a></li>
+        {% endfor %}
+        </ul>
+        <a href="/download?query={{ query }}">Stáhnout JSON</a>
+    {% endif %}
+</body>
+</html>
